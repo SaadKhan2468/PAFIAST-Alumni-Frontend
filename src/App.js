@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { HelmetProvider } from 'react-helmet-async';
 import AlumniPage from "./Pages/alumni";
 import LoginPage from "./Pages/LoginPage";
 import AboutPage from "./Pages/AboutPage"; 
@@ -16,6 +17,7 @@ import ProfileView from "./Pages/ProfileView";
 
 function App() {
   return (
+    <HelmetProvider>
     <Router>
       <div className="App">
         <Routes>
@@ -48,6 +50,7 @@ function App() {
         <Chatbot />
       </div>
     </Router>
+    </HelmetProvider>
   );
 }
 
