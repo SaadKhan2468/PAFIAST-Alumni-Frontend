@@ -16,7 +16,7 @@ const ProfileView = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const baseUrl = 'http://localhost:5000/api';
+        const baseUrl = `${process.env.REACT_APP_API_URL}/api`;
         
         const responses = await Promise.all([
           axios.get(`${baseUrl}/profile/${registrationNumber}`),
@@ -55,7 +55,7 @@ const ProfileView = () => {
           <div className="w-48 h-48 rounded-full overflow-hidden bg-gray-200 shrink-0">
             {profile.profilePicture ? (
               <img 
-                src={`http://localhost:5000${profile.profilePicture}`} 
+                src={`${process.env.REACT_APP_API_URL}${profile.profilePicture}`} 
                 alt="Profile"
                 className="w-full h-full object-cover"
               />
@@ -158,7 +158,7 @@ const ProfileView = () => {
                 <p className="text-gray-600 mt-1">{achievement.details}</p>
                 {achievement.file_path && (
                   <a
-                    href={`http://localhost:5000/uploads/${achievement.file_path}`}
+                    href={`${process.env.REACT_APP_API_URL}/uploads/${achievement.file_path}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-600 hover:underline text-sm mt-2 inline-block"

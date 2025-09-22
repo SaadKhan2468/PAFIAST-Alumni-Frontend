@@ -64,7 +64,7 @@ const Profile = () => {
     // Fetch user profile
     if (token) {
       axios
-        .get("http://localhost:5000/api/profile", {
+        .get(`${process.env.REACT_APP_API_URL}/api/profile`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -116,7 +116,7 @@ const Profile = () => {
     }
 
     try {
-      await axios.post("http://localhost:5000/api/profile", formDataObj, {
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/profile`, formDataObj, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
@@ -137,7 +137,7 @@ const Profile = () => {
           <div className="w-32 h-32 bg-gray-200 rounded-full overflow-hidden">
             {user.profilePicture ? (
               <img
-                src={`http://localhost:5000${user.profilePicture}`}
+                src={`${process.env.REACT_APP_API_URL}${user.profilePicture}`}
                 alt="Profile"
                 className="w-full h-full object-cover"
               />
@@ -193,7 +193,7 @@ const Profile = () => {
                 <div className="mt-2">
                   <p className="text-sm font-medium text-gray-600">Current Certificate:</p>
                   <a
-                    href={`http://localhost:5000${user.certificates}`}
+                    href={`${process.env.REACT_APP_API_URL}${user.certificates}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-500 block mt-1"

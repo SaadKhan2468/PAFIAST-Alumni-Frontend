@@ -3,6 +3,7 @@ import axios from 'axios';
 import AppBar from "./AppBar";
 import AuthHeader from './AuthHeader';
 import paflLogo from "./images/pafl.png";
+import { Helmet } from 'react-helmet-async';
 import Job from "./images/job1.jpg";
 import { Link } from "react-router-dom";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
@@ -153,7 +154,7 @@ const Header = () => {
     setIsSearching(true);
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/search?q=${encodeURIComponent(query)}`
+        `${process.env.REACT_APP_API_URL}/api/search?q=${encodeURIComponent(query)}`
       );
       setSearchResults(response.data);
     } catch (error) {
@@ -166,10 +167,44 @@ const Header = () => {
     setSearchResults([]);
   }
 };
+ // Structured Data (JSON-LD)
+     const structuredData = {
+       '@context': 'https://schema.org',
+       '@type': 'WebSite',
+       name: 'PAFIAST Alumni Network',
+       url: 'https://your-vercel-domain.com',
+       potentialAction: {
+         '@type': 'SearchAction',
+         target: 'https://your-vercel-domain.com/alumni?q={search_term_string}',
+         'query-input': 'required name=search_term_string'
+       }
+     };
 
 
   return (
     <header className="relative">
+      <Helmet>
+           <title>PAFIAST Alumni Network - Connect with Alumni</title>
+           <meta name="description" content="Join the PAFIAST Alumni Network to reconnect with fellow graduates, explore job opportunities, and share your professional journey." />
+           <meta name="keywords" content="PAFIAST, alumni network, university alumni, job opportunities, Pakistan education, networking" />
+           <meta name="author" content="PAFIAST Alumni Network" />
+           <meta name="robots" content="index, follow" />
+           {/* Open Graph for social sharing */}
+           <meta property="og:title" content="PAFIAST Alumni Network - Connect with Alumni" />
+           <meta property="og:description" content="Join the PAFIAST Alumni Network to reconnect with fellow graduates, explore job opportunities, and share your professional journey." />
+           <meta property="og:image" content="https://your-vercel-domain.com/images/pafiast.png" />
+           <meta property="og:url" content="https://your-vercel-domain.com/alumni" />
+           <meta property="og:type" content="website" />
+           {/* Twitter Cards */}
+           <meta name="twitter:card" content="summary_large_image" />
+           <meta name="twitter:title" content="PAFIAST Alumni Network - Connect with Alumni" />
+           <meta name="twitter:description" content="Join the PAFIAST Alumni Network to reconnect with fellow graduates, explore job opportunities, and share your professional journey." />
+           <meta name="twitter:image" content="https://your-vercel-domain.com/images/pafiast.png" />
+           {/* Favicon */}
+           <link rel="icon" href="/favicon.ico" />
+           {/* Structured Data */}
+           <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
+         </Helmet>
       {/* Hero Section with Video */}
       <section className="relative w-full h-screen">
         {/* Background Video */}
@@ -262,7 +297,7 @@ const Header = () => {
           <div className="flex items-center space-x-4">
             <div className="flex-shrink-0">
               <img 
-                src={user.profilePicture ? `http://localhost:5000${user.profilePicture}` : 'https://via.placeholder.com/150'} 
+                src={user.profilePicture ? `${process.env.REACT_APP_API_URL}${user.profilePicture}` : 'https://via.placeholder.com/150'} 
                 alt={user.name}
                 className="w-16 h-16 rounded-full object-cover"
               />

@@ -28,7 +28,7 @@ const ProjectsSection = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/projects", {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/projects`, {
         method: "GET",
         headers: {
           "Authorization": `Bearer ${token}`
@@ -81,8 +81,8 @@ const ProjectsSection = () => {
 
     try {
       const url = isEditing 
-        ? `http://localhost:5000/api/projects/${currentProject.id}` 
-        : "http://localhost:5000/api/projects";
+        ? `${process.env.REACT_APP_API_URL}/api/projects/${currentProject.id}` 
+        : `${process.env.REACT_APP_API_URL}/api/projects`;
       
       const method = isEditing ? "PUT" : "POST";
       
@@ -136,7 +136,7 @@ const ProjectsSection = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:5000/api/projects/${id}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/projects/${id}`, {
         method: "DELETE",
         headers: {
           "Authorization": `Bearer ${token}`

@@ -17,7 +17,7 @@ const AchievementsSection = () => {
             const token = localStorage.getItem("token");
             
             try {
-                const response = await fetch("http://localhost:5000/api/achievements", {
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/achievements`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 
@@ -70,7 +70,7 @@ const AchievementsSection = () => {
                 formData.append('id', currentAchievement.id);
                 
                 // Update existing achievement
-                const response = await fetch(`http://localhost:5000/api/achievements/${currentAchievement.id}`, {
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/achievements/${currentAchievement.id}`, {
                     method: "PUT",
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -93,7 +93,7 @@ const AchievementsSection = () => {
                 alert("Achievement updated successfully!");
             } else {
                 // Create new achievement
-                const response = await fetch("http://localhost:5000/api/achievements", {
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/achievements`, {
                     method: "POST",
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -212,7 +212,7 @@ const AchievementsSection = () => {
                                     <p className="text-gray-600 mt-2">{achievement.details}</p>
                                     {achievement.file_path && (
                                         <a
-                                            href={`http://localhost:5000/uploads/${achievement.file_path}`}
+                                            href={`${process.env.REACT_APP_API_URL}/uploads/${achievement.file_path}`}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="text-blue-500 hover:text-blue-700 mt-2 inline-block"

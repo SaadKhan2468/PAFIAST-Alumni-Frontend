@@ -18,7 +18,7 @@ const JobSection = () => {
         const token = localStorage.getItem("token");
         
         try {
-            const response = await fetch("http://localhost:5000/api/jobs", {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/jobs`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             
@@ -66,7 +66,7 @@ const JobSection = () => {
             };
 
             if (editMode && currentJob.id) {
-                response = await fetch(`http://localhost:5000/api/jobs/${currentJob.id}`, {
+                response = await fetch(`${process.env.REACT_APP_API_URL}/api/jobs/${currentJob.id}`, {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json",
@@ -75,7 +75,7 @@ const JobSection = () => {
                     body: JSON.stringify(formattedJob)
                 });
             } else {
-                response = await fetch("http://localhost:5000/api/jobs", {
+                response = await fetch(`${process.env.REACT_APP_API_URL}/api/jobs`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

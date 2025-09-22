@@ -30,7 +30,7 @@ const EducationSection = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/education", {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/education`, {
         method: "GET",
         headers: {
           "Authorization": `Bearer ${token}`
@@ -78,7 +78,7 @@ const EducationSection = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/education", {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/education`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

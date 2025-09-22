@@ -58,7 +58,7 @@ const ProfileHome = () => {
   const fetchUserProfile = async () => {
     if (token) {
       try {
-        const response = await axios.get("http://localhost:5000/api/profile", {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/profile`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         
@@ -122,7 +122,7 @@ const ProfileHome = () => {
     }
 
     try {
-      await axios.post("http://localhost:5000/api/profile", formData, {
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/profile`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${token}`,
@@ -272,6 +272,7 @@ const ProfileHome = () => {
               editMessage.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
             }`}>
               {editMessage.text}
+              
             </div>
           )}
 
@@ -279,7 +280,7 @@ const ProfileHome = () => {
             {/* Keep existing profile picture and edit fields */}
           <div className="relative">
               <img
-                src={user.profilePicture ? `http://localhost:5000${user.profilePicture}` : "https://via.placeholder.com/150"}
+                src={user.profilePicture ? `${process.env.REACT_APP_API_URL}${user.profilePicture}` : "https://via.placeholder.com/150"}
                 alt="User Profile"
                 className="w-32 h-32 rounded-full mb-4"
               />
@@ -385,7 +386,7 @@ const ProfileHome = () => {
                   />
                   {user.certificates && (
                     <a
-                      href={`http://localhost:5000${user.certificates}`}
+                      href={`${process.env.REACT_APP_API_URL}${user.certificates}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="block text-blue-500 hover:text-blue-600 text-sm mt-2"
@@ -398,7 +399,7 @@ const ProfileHome = () => {
               ) : (
                 user.certificates && (
                   <a
-                    href={`http://localhost:5000${user.certificates}`}
+                    href={`${process.env.REACT_APP_API_URL}${user.certificates}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-500 hover:text-blue-600 text-sm"

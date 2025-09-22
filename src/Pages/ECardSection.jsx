@@ -35,7 +35,7 @@ const ECardSection = () => {
     }
 
     try {
-      const response = await axios.get("http://localhost:5000/api/profile", {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/profile`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       
@@ -59,7 +59,7 @@ const ECardSection = () => {
     if (!token) return;
 
     try {
-      const response = await axios.get("http://localhost:5000/api/ecard/status", {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/ecard/status`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       
@@ -91,7 +91,7 @@ const ECardSection = () => {
       formData.append('cardImage', blob, 'ecard.png');
       
       const response = await axios.post(
-        "http://localhost:5000/api/ecard/request",
+        `${process.env.REACT_APP_API_URL}/api/ecard/request`,
         formData,
         {
           headers: {
@@ -126,7 +126,7 @@ const ECardSection = () => {
     }
 
     try {
-      const response = await axios.get("http://localhost:5000/api/ecard/download", {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/ecard/download`, {
         headers: { Authorization: `Bearer ${token}` },
         responseType: 'blob' // Expecting a file/blob response
       });
@@ -155,7 +155,7 @@ const ECardSection = () => {
     }
 
     try {
-      const response = await axios.get("http://localhost:5000/api/ecard/download", {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/ecard/download`, {
         headers: { Authorization: `Bearer ${token}` },
         responseType: 'blob' // Expecting a file/blob response
       });
@@ -289,7 +289,7 @@ const ECardSection = () => {
                   <div className="w-24 h-32 bg-gray-200 flex items-center justify-center overflow-hidden">
                     {user.profilePicture ? (
                       <img 
-                        src={`http://localhost:5000${user.profilePicture}`} 
+                        src={`${process.env.REACT_APP_API_URL}${user.profilePicture}`} 
                         alt="Profile" 
                         crossOrigin="anonymous"
                         className="w-full h-full object-cover"
@@ -362,7 +362,7 @@ const ECardSection = () => {
                   <div className="w-24 h-32 bg-gray-200 flex items-center justify-center overflow-hidden">
                     {user.profilePicture ? (
                       <img 
-                        src={`http://localhost:5000${user.profilePicture}`} 
+                        src={`${process.env.REACT_APP_API_URL}${user.profilePicture}`} 
                         alt="Profile" 
                         crossOrigin="anonymous"
                         className="w-full h-full object-cover"

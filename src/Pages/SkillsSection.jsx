@@ -10,7 +10,7 @@ const SkillsSection = () => {
         const token = localStorage.getItem("token");
         
         try {
-            const response = await fetch("http://localhost:5000/api/skills", {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/skills`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             
@@ -33,7 +33,7 @@ const SkillsSection = () => {
             
             try {
                 const token = localStorage.getItem("token");
-                const response = await fetch("http://localhost:5000/api/skills", {
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/skills`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -57,7 +57,7 @@ const SkillsSection = () => {
         
         try {
             const token = localStorage.getItem("token");
-            await fetch("http://localhost:5000/api/skills", {
+            await fetch(`${process.env.REACT_APP_API_URL}/api/skills`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

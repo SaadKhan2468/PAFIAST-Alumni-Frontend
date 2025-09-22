@@ -21,7 +21,7 @@ const AppBar = () => {
           if (decoded.exp * 1000 > Date.now()) {
             setIsAuthenticated(true);
             // Fetch user profile
-            const response = await axios.get("http://localhost:5000/api/profile", {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/profile`, {
               headers: {
                 Authorization: `Bearer ${token}`
               }
@@ -105,7 +105,7 @@ const AppBar = () => {
               {isAuthenticated && userProfile ? (
                 <img
                   src={userProfile.profilePicture 
-                    ? `http://localhost:5000${userProfile.profilePicture}`
+                    ? `${process.env.REACT_APP_API_URL}${userProfile.profilePicture}`
                     : "https://via.placeholder.com/40"}
                   alt="Profile"
                   className="w-10 h-10 rounded-full border-2 border-white object-cover"

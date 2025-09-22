@@ -21,7 +21,7 @@ const InternshipSection = () => {
         const token = localStorage.getItem("token");
         
         try {
-            const response = await fetch("http://localhost:5000/api/internships", {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/internships`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             
@@ -66,7 +66,7 @@ const InternshipSection = () => {
             let response;
             if (editMode && currentInternship.id) {
                 // Update existing internship
-                response = await fetch(`http://localhost:5000/api/internships/${currentInternship.id}`, {
+                response = await fetch(`${process.env.REACT_APP_API_URL}/api/internships/${currentInternship.id}`, {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json",
@@ -76,7 +76,7 @@ const InternshipSection = () => {
                 });
             } else {
                 // Create new internship
-                response = await fetch("http://localhost:5000/api/internships", {
+                response = await fetch(`${process.env.REACT_APP_API_URL}/api/internships`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
